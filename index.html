@@ -3,186 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LUH LANCHES - Hambúrgueres Premium e Hot Dogs Artesanais em Auriflama. Peça agora pelo WhatsApp!">
-    <meta name="theme-color" content="#0D0D0D">
-    <title>LUH LANCHES | Hambúrgueres e Hot Dogs Premium</title>
+    <meta name="description" content="LUH LANCHES - Hambúrgueres Artesanais e Hot Dogs Premium em Auriflama. O melhor sabor da região!">
+    <title>LUH LANCHES | Sabor Incomparável</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --color-dark: #0D0D0D;
-            --color-dark-secondary: #1a1a1a;
-            --color-accent: #FF7E1D;
-            --color-text: #F5F5F5;
-            --color-text-secondary: #B8B8B8;
-            --font-primary: 'Poppins', sans-serif;
-            --font-secondary: 'Inter', sans-serif;
-            --transition: all 0.3s ease;
+            --primary: #ff4d00; /* Laranja vibrante */
+            --secondary: #ffbc00; /* Amarelo ouro */
+            --dark: #0a0a0a;
+            --card-bg: #161616;
+            --text: #ffffff;
+            --text-muted: #a0a0a0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-secondary);
-            background-color: var(--color-dark);
-            color: var(--color-text);
-            line-height: 1.6;
+        body { font-family: 'Open Sans', sans-serif; background-color: var(--dark); color: var(--text); scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+
+        /* Header e Navbar */
+        header {
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 900; font-size: 1.5rem; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* Navbar */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: rgba(13, 13, 13, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 126, 29, 0.2);
-            z-index: 1000;
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px;
         }
-
-        .navbar-container {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 20px;
-        }
-
-        .navbar-logo {
-            display: flex; align-items: center; gap: 10px;
-            font-family: var(--font-primary); font-weight: 800;
-            text-decoration: none; color: var(--color-text);
-        }
-
-        .navbar-menu { display: flex; gap: 25px; list-style: none; }
-        .nav-item {
-            text-decoration: none; color: var(--color-text-secondary);
-            font-size: 14px; font-weight: 600; transition: var(--transition);
-        }
-        .nav-item:hover { color: var(--color-accent); }
-
-        /* Hero */
-        .hero { padding: 150px 0 80px; background: radial-gradient(circle at top right, #2a1a0a, var(--color-dark)); }
-        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .hero-text h1 { font-family: var(--font-primary); font-size: clamp(32px, 5vw, 56px); line-height: 1.1; margin-bottom: 20px; }
-        .hero-subtitle { color: var(--color-text-secondary); margin-bottom: 30px; font-size: 18px; }
-
-        .cta-button {
-            display: inline-block; padding: 16px 35px;
-            background: var(--color-accent); color: #000;
-            text-decoration: none; border-radius: 8px; font-weight: 700;
-            transition: var(--transition); border: none; cursor: pointer;
-        }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 126, 29, 0.3); }
-
-        .hero-image { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-
-        /* Menu Sections */
-        .menu-section { padding: 80px 0; }
-        .section-title { font-family: var(--font-primary); font-size: 36px; text-align: center; margin-bottom: 50px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.2rem; color: var(--secondary); margin-bottom: 30px; font-weight: 600; }
         
-        .product-card {
-            background: var(--color-dark-secondary); border-radius: 15px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition);
+        .btn {
+            background: var(--primary); color: white; padding: 15px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; border: none; cursor: pointer;
         }
-        .product-card:hover { transform: translateY(-10px); }
-        .product-img { width: 100%; height: 200px; object-fit: cover; }
-        .product-info { padding: 20px; }
-        .product-price { color: var(--color-accent); font-weight: 800; font-size: 20px; margin: 10px 0; }
+        .btn:hover { background: var(--secondary); transform: scale(1.05); color: #000; }
 
-        /* Contact */
-        .contact-section { padding: 80px 0; background: var(--color-dark-secondary); }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        /* Seção Menu */
+        .section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; }
+        .section-title span { color: var(--primary); }
 
-        footer { padding: 40px; text-align: center; border-top: 1px solid #333; font-size: 14px; color: #666; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); border-radius: 20px; overflow: hidden; transition: 0.3s; border: 1px solid #222; }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card-body h3 { margin-bottom: 10px; }
+        .card-body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; height: 40px; overflow: hidden; }
+        .price { font-size: 1.4rem; font-weight: 700; color: var(--secondary); display: block; margin-bottom: 15px; }
 
+        /* Footer */
+        footer { background: #000; padding: 50px 20px; text-align: center; border-top: 1px solid #222; }
+        .contact-info { margin-bottom: 20px; color: var(--text-muted); }
+        
         @media (max-width: 768px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .navbar-menu { display: none; } /* Simplicidade para mobile */
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-logo">🔥 LUH LANCHES</a>
-            <div class="navbar-menu">
-                <a href="#home" class="nav-item">Home</a>
-                <a href="#burgers" class="nav-item">Hambúrgueres</a>
-                <a href="#hotdogs" class="nav-item">Hot Dogs</a>
-                <a href="#contact" class="nav-item">Contato</a>
+    <header>
+        <nav>
+            <a href="#" class="logo">LUH LANCHES</a>
+            <div class="nav-links">
+                <a href="#burgers">Hambúrgueres</a>
+                <a href="#hotdogs">Hot Dogs</a>
+                <a href="#contato">Contato</a>
             </div>
-        </div>
-    </nav>
-
-    <header id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Lanches que Falam por Si</h1>
-                    <p class="hero-subtitle">Ingredientes selecionados e carne 100% artesanal. O melhor sabor de Auriflama na sua casa.</p>
-                    <a href="#burgers" class="cta-button">Explorar Menu</a>
-                </div>
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800" alt="Hambúrguer" class="hero-image">
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <section id="burgers" class="menu-section">
-        <div class="container">
-            <h2 class="section-title">Nossos Hambúrgueres</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1550317138-10000687ad32?q=80&w=500" class="product-img" alt="X-Burger">
-                    <div class="product-info">
-                        <h3>X-Burger Premium</h3>
-                        <p>Carne 200g, queijo cheddar, bacon e molho especial.</p>
-                        <p class="product-price">R$ 39,90</p>
-                        <button class="cta-button" onclick="orderWhatsApp('X-Burger Premium')">Pedir Agora</button>
-                    </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sabor que <br><span style="color:var(--primary)">Vicia.</span></h1>
+            <p>Os melhores lanches artesanais de Auriflama</p>
+            <a href="#burgers" class="btn">VER CARDÁPIO</a>
+        </div>
+    </section>
+
+    <section id="burgers" class="section">
+        <h2 class="section-title">Nossos <span>Hambúrgueres</span></h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" alt="X-Burger">
+                <div class="card-body">
+                    <h3>X-Burger Premium</h3>
+                    <p>Blend bovino 200g, queijo cheddar derretido e bacon crocante.</p>
+                    <span class="price">R$ 39,90</span>
+                    <button class="btn" style="padding: 10px 20px; width: 100%;" onclick="enviarWhats('X-Burger Premium')">PEDIR AGORA</button>
                 </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3ecc50f1?q=80&w=500" class="product-img" alt="X-Salada">
-                    <div class="product-info">
-                        <h3>Combo Clássico</h3>
-                        <p>Acompanha batata frita e refrigerante lata.</p>
-                        <p class="product-price">R$ 45,00</p>
-                        <button class="cta-button" onclick="orderWhatsApp('Combo Clássico')">Pedir Agora</button>
-                    </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3ecc50f1?w=500" alt="Combo">
+                <div class="card-body">
+                    <h3>Combo da Luh</h3>
+                    <p>Hambúrguer simples + Batata frita + Coca-cola lata.</p>
+                    <span class="price">R$ 45,00</span>
+                    <button class="btn" style="padding: 10px 20px; width: 100%;" onclick="enviarWhats('Combo da Luh')">PEDIR AGORA</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title">Peça agora!</h2>
-            <div class="contact-grid">
-                <div>
-                    <h3>WhatsApp</h3>
-                    <p>(18) 99138-1163</p>
-                </div>
-                <div>
-                    <h3>Horário</h3>
-                    <p>Terça a Domingo<br>18h às 23h30</p>
-                </div>
-            </div>
+    <footer id="contato">
+        <div class="contact-info">
+            <p>📍 Rua das Flores, 456 - Auriflama/SP</p>
+            <p>📞 (18) 3245-7890 | 📱 (18) 99138-1163</p>
+            <p>🕒 Aberto das 18h às 23:30h</p>
         </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 LUH LANCHES - Auriflama/SP</p>
+        <p style="font-size: 0.8rem; color: #444;">© 2026 LUH LANCHES. Desenvolvido para encantar.</p>
     </footer>
 
     <script>
-        function orderWhatsApp(productName) {
-            const phone = "5518991381163";
-            const message = `Olá! Gostaria de pedir o ${productName}.`;
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+        function enviarWhats(produto) {
+            const tel = "5518991381163";
+            const msg = encodeURIComponent(`Olá! Vi o site e quero pedir: ${produto}`);
+            window.open(`https://wa.me/${tel}?text=${msg}`, '_blank');
         }
     </script>
+
 </body>
 </html>

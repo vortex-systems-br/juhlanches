@@ -3,78 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUH LANCHES | App</title>
+<title>LUH LANCHES • Premium</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#060606;
+  --bg:#050505;
   --card:#121212;
-  --soft:#1b1b1b;
+  --glass:rgba(255,255,255,0.05);
   --primary:#ff4d00;
   --primary2:#ff7a00;
   --text:#fff;
-  --muted:#9a9a9a;
+  --muted:#aaa;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
+  font-family:Inter;
+  background:linear-gradient(180deg,#050505,#0a0a0a);
   color:var(--text);
 }
 
-/* HEADER APP */
+/* HEADER */
 .header{
-  position:sticky;
-  top:0;
-  background:rgba(0,0,0,.8);
-  backdrop-filter:blur(12px);
-  padding:15px;
-  z-index:1000;
-  border-bottom:1px solid #222;
-}
-
-.header h1{
-  font-size:1.2rem;
+  padding:20px;
+  font-size:1.3rem;
   font-weight:800;
-}
-
-.search{
-  margin-top:10px;
-  background:var(--soft);
-  padding:10px 15px;
-  border-radius:12px;
-  color:var(--muted);
-}
-
-/* CATEGORIAS */
-.categories{
-  display:flex;
-  gap:10px;
-  overflow:auto;
-  padding:15px;
-}
-
-.cat{
-  background:var(--soft);
-  padding:10px 15px;
-  border-radius:20px;
-  white-space:nowrap;
-  font-size:.9rem;
-  cursor:pointer;
-}
-
-.cat.active{
-  background:linear-gradient(45deg,var(--primary),var(--primary2));
 }
 
 /* GRID */
 .grid{
   padding:15px;
   display:grid;
-  gap:15px;
+  gap:20px;
 }
 
 /* CARD */
@@ -82,17 +44,17 @@ body{
   background:var(--card);
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.5);
-  transition:.2s;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  transition:.3s;
 }
 
 .card:hover{
-  transform:scale(1.02);
+  transform:translateY(-5px) scale(1.01);
 }
 
 .card img{
   width:100%;
-  height:160px;
+  height:170px;
   object-fit:cover;
 }
 
@@ -100,48 +62,78 @@ body{
   padding:15px;
 }
 
-.card h3{
-  font-size:1rem;
-  margin-bottom:5px;
-}
-
-.card p{
-  font-size:.85rem;
-  color:var(--muted);
-  margin-bottom:10px;
-}
-
 .price{
-  font-weight:800;
   color:#ffcc00;
-  margin-bottom:10px;
+  font-weight:800;
+  margin:10px 0;
 }
 
 .btn{
-  background:linear-gradient(45deg,var(--primary),var(--primary2));
-  border:none;
-  padding:10px;
   width:100%;
-  border-radius:10px;
-  font-weight:700;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(45deg,var(--primary),var(--primary2));
   color:#fff;
+  font-weight:700;
   cursor:pointer;
 }
 
-/* FLOAT BUTTON */
+/* MODAL PRODUTO */
+.product-modal{
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  width:100%;
+  background:#111;
+  border-radius:20px 20px 0 0;
+  padding:20px;
+  transition:.4s;
+}
+
+.product-modal.active{
+  bottom:0;
+}
+
+/* ADDONS */
+.addon{
+  display:flex;
+  justify-content:space-between;
+  margin:10px 0;
+  font-size:.9rem;
+}
+
+/* CART */
+.cart{
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  width:100%;
+  background:#111;
+  padding:20px;
+  border-radius:20px 20px 0 0;
+  transition:.4s;
+}
+
+.cart.active{
+  bottom:0;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  margin:10px 0;
+}
+
+/* FLOAT */
 .float{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:#25D366;
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.5rem;
-  box-shadow:0 10px 25px rgba(0,0,0,.5);
+  background:linear-gradient(45deg,var(--primary),var(--primary2));
+  padding:15px 20px;
+  border-radius:50px;
+  font-weight:700;
   cursor:pointer;
 }
 </style>
@@ -149,61 +141,115 @@ body{
 
 <body>
 
-<div class="header">
-  <h1>LUH LANCHES</h1>
-  <div class="search">🔍 Buscar lanche...</div>
-</div>
-
-<div class="categories">
-  <div class="cat active">🍔 Hambúrguer</div>
-  <div class="cat">🌭 Hot Dog</div>
-  <div class="cat">🔥 Combos</div>
-  <div class="cat">🥤 Bebidas</div>
-</div>
+<div class="header">🔥 LUH LANCHES</div>
 
 <div class="grid">
 
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
-    <div class="card-body">
-      <h3>X-Burger Premium</h3>
-      <p>200g carne + cheddar + bacon</p>
-      <div class="price">R$ 39,90</div>
-      <button class="btn" onclick="pedido('X-Burger Premium')">Pedir</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
-    <div class="card-body">
-      <h3>Combo da Luh</h3>
-      <p>Hambúrguer + batata + refri</p>
-      <div class="price">R$ 45,00</div>
-      <button class="btn" onclick="pedido('Combo da Luh')">Pedir</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1619740455993-9d4fd32f3f3d">
-    <div class="card-body">
-      <h3>Hot Dog Tradicional</h3>
-      <p>Purê + vinagrete + batata palha</p>
-      <div class="price">R$ 24,90</div>
-      <button class="btn" onclick="pedido('Hot Dog Tradicional')">Pedir</button>
-    </div>
-  </div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+<div class="card-body">
+<h3>X-Burger Premium</h3>
+<div class="price">R$ 39,90</div>
+<button class="btn" onclick="openProduct('X-Burger Premium',39.9)">Escolher</button>
+</div>
+</div>
 
 </div>
 
-<div class="float" onclick="pedido('Quero fazer um pedido')">
-📲
+<!-- MODAL PRODUTO -->
+<div class="product-modal" id="product">
+<h3 id="pname"></h3>
+
+<div class="addon">
+<span>Bacon</span>
+<input type="checkbox" value="5" data-name="Bacon">
+</div>
+
+<div class="addon">
+<span>Cheddar</span>
+<input type="checkbox" value="4" data-name="Cheddar">
+</div>
+
+<button class="btn" onclick="addCart()">Adicionar ao carrinho</button>
+</div>
+
+<!-- CART -->
+<div class="cart" id="cart">
+<h3>Seu Pedido</h3>
+<div id="items"></div>
+<div id="total"></div>
+<button class="btn" onclick="finish()">Finalizar</button>
+</div>
+
+<div class="float" onclick="toggleCart()">
+🛒 <span id="count">0</span>
 </div>
 
 <script>
-function pedido(item){
-  const tel="5518991381163";
-  const msg=encodeURIComponent("Olá, quero pedir: "+item);
-  window.open(`https://wa.me/${tel}?text=${msg}`);
+let carrinho=[];
+let produtoAtual=null;
+
+function openProduct(nome,preco){
+  produtoAtual={nome,preco};
+  document.getElementById("pname").innerText=nome;
+  document.getElementById("product").classList.add("active");
+}
+
+function addCart(){
+  let adicionais=[];
+  let total=produtoAtual.preco;
+
+  document.querySelectorAll("#product input:checked").forEach(i=>{
+    adicionais.push(i.dataset.name);
+    total+=parseFloat(i.value);
+  });
+
+  carrinho.push({
+    nome:produtoAtual.nome,
+    adicionais,
+    preco:total
+  });
+
+  document.getElementById("product").classList.remove("active");
+  update();
+}
+
+function update(){
+  document.getElementById("count").innerText=carrinho.length;
+
+  let html="";
+  let total=0;
+
+  carrinho.forEach((i,index)=>{
+    total+=i.preco;
+    html+=`
+      <div class="item">
+        ${i.nome} (${i.adicionais.join(", ")})
+        R$ ${i.preco.toFixed(2)}
+      </div>
+    `;
+  });
+
+  document.getElementById("items").innerHTML=html;
+  document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
+}
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+}
+
+function finish(){
+  let msg="Pedido:%0A";
+  let total=0;
+
+  carrinho.forEach(i=>{
+    msg+=`- ${i.nome} (${i.adicionais.join(", ")}) R$ ${i.preco}%0A`;
+    total+=i.preco;
+  });
+
+  msg+=`Total: R$ ${total}`;
+
+  window.open(`https://wa.me/5518991381163?text=${msg}`);
 }
 </script>
 

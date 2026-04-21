@@ -252,4 +252,135 @@
                         <div class="card-bottom">
                             <span class="price">R$ 26,90</span>
                             <button class="btn-icon" onclick="orderOnWhatsApp('Quero pedir um Classic Smash (R$ 26,90)')" aria-label="Pedir no WhatsApp">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="card-image">
+                        <div class="badge-new">NOVO</div>
+                        <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=800&auto=format&fit=crop" alt="Cheddar Melt" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cheddar Melt Onion</h3>
+                        <p>Pão australiano, blend 160g, creme de cheddar autêntico e cebola na chapa ao shoyu.</p>
+                        <div class="card-bottom">
+                            <span class="price">R$ 32,90</span>
+                            <button class="btn-icon" onclick="orderOnWhatsApp('Quero pedir um Cheddar Melt Onion (R$ 32,90)')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="hot-dogs">
+        <div class="container">
+            <h2 class="section-title">Premium <span>Hot Dogs</span></h2>
+            <div class="product-grid">
+                
+                <div class="product-card fade-in">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1619740455993-9e612b1af08a?q=80&w=800&auto=format&fit=crop" alt="Dogão Paulista Premium" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Dogão Paulista Premium</h3>
+                        <p>Pão de leite macio, 2 salsichas defumadas, purê de batata cremoso, vinagrete, milho, batata palha extra fina e catupiry original.</p>
+                        <div class="card-bottom">
+                            <span class="price">R$ 22,90</span>
+                            <button class="btn-icon" onclick="orderOnWhatsApp('Quero pedir um Dogão Paulista Premium (R$ 22,90)')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="product-card fade-in">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1590165482129-1b8b27698780?q=80&w=800&auto=format&fit=crop" alt="Chilli Dog" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Texas Chilli Dog</h3>
+                        <p>Pão selado, linguiça artesanal, chilli de carne com especiarias, cheddar derretido e jalapeños.</p>
+                        <div class="card-bottom">
+                            <span class="price">R$ 28,90</span>
+                            <button class="btn-icon" onclick="orderOnWhatsApp('Quero pedir um Texas Chilli Dog (R$ 28,90)')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="brand-footer">
+                <div class="logo">LUH<span>LANCHES</span></div>
+                <p>A revolução do street food na sua casa.</p>
+            </div>
+            <div class="contact-info">
+                <h4>Atendimento</h4>
+                <p>Terça a Domingo - 18h30 às 23h30</p>
+                <p>Delivery e Retirada</p>
+                <a href="#" class="footer-zap" onclick="orderOnWhatsApp('Olá, Luh Lanches!')">WhatsApp: (18) 99999-9999</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Luh Lanches. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function orderOnWhatsApp(message) {
+            // Número do WhatsApp (Substitua pelo número real, ex: 5518991234567)
+            const phoneNumber = "5518999999999"; 
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const elementsToFade = document.querySelectorAll('.fade-in');
+            elementsToFade.forEach(el => observer.observe(el));
+
+            const sections = document.querySelectorAll('section[id]');
+            const navPills = document.querySelectorAll('.category-pill');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navPills.forEach(pill => {
+                    pill.classList.remove('active');
+                    if (pill.getAttribute('href').includes(current)) {
+                        pill.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

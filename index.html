@@ -1,140 +1,704 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LUH LANCHES - Hambúrgueres Artesanais e Hot Dogs Premium em Auriflama. O melhor sabor da região!">
-    <title>LUH LANCHES | Sabor Incomparável</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #ff4d00; /* Laranja vibrante */
-            --secondary: #ffbc00; /* Amarelo ouro */
-            --dark: #0a0a0a;
-            --card-bg: #161616;
-            --text: #ffffff;
-            --text-muted: #a0a0a0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUH LANCHES - Hambúrgueres, Hot Dogs e Combos artesanais em Auriflama. Sabor, qualidade e rapidez no pedido via WhatsApp." />
+  <title>LUH LANCHES | Sabor Incomparável</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; background-color: var(--dark); color: var(--text); scroll-behavior: smooth; }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Header e Navbar */
-        header {
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
-        .logo { font-weight: 900; font-size: 1.5rem; color: var(--primary); text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
+  <style>
+    :root{
+      --bg: #070707;
+      --bg-2: #0f0f10;
+      --card: rgba(24,24,24,.92);
+      --card-2: rgba(18,18,18,.96);
+      --line: rgba(255,255,255,.08);
+      --text: #ffffff;
+      --muted: #b3b3b3;
+      --muted-2: #8d8d8d;
+      --primary: #ff5a00;
+      --primary-2: #ff8a00;
+      --gold: #ffcc33;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --max: 1200px;
+    }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
-                        url('https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px;
-        }
-        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 20px; }
-        .hero-content p { font-size: 1.2rem; color: var(--secondary); margin-bottom: 30px; font-weight: 600; }
-        
-        .btn {
-            background: var(--primary); color: white; padding: 15px 40px; border-radius: 50px;
-            text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; border: none; cursor: pointer;
-        }
-        .btn:hover { background: var(--secondary); transform: scale(1.05); color: #000; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255,90,0,.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,204,51,.06), transparent 25%),
+        linear-gradient(180deg, #050505 0%, #090909 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-        /* Seção Menu */
-        .section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; }
-        .section-title span { color: var(--primary); }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: var(--card-bg); border-radius: 20px; overflow: hidden; transition: 0.3s; border: 1px solid #222; }
-        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 25px; }
-        .card-body h3 { margin-bottom: 10px; }
-        .card-body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; height: 40px; overflow: hidden; }
-        .price { font-size: 1.4rem; font-weight: 700; color: var(--secondary); display: block; margin-bottom: 15px; }
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin-inline: auto;
+    }
 
-        /* Footer */
-        footer { background: #000; padding: 50px 20px; text-align: center; border-top: 1px solid #222; }
-        .contact-info { margin-bottom: 20px; color: var(--text-muted); }
-        
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-        }
-    </style>
+    /* HEADER */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: .5px;
+      font-size: 1.35rem;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-weight: 600;
+      color: #f2f2f2;
+    }
+    .nav-links a {
+      opacity: .88;
+      transition: .25s ease;
+      position: relative;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--primary); }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: .25s ease;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: #fff;
+      border-radius: 14px;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding-top: 96px;
+      position: relative;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.78)),
+        url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      z-index: -2;
+      opacity: .18;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,90,0,.18), transparent 18%),
+        radial-gradient(circle at 80% 30%, rgba(255,204,51,.12), transparent 20%);
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 34px;
+      align-items: center;
+      padding: 40px 0 64px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      color: #f5f5f5;
+      font-weight: 600;
+      font-size: .92rem;
+      margin-bottom: 18px;
+    }
+    .eyebrow span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 0 6px rgba(255,90,0,.16);
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.9rem, 7vw, 5.7rem);
+      line-height: .92;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      max-width: 10ch;
+    }
+    .hero h1 strong {
+      color: var(--primary);
+      text-shadow: 0 10px 30px rgba(255,90,0,.22);
+    }
+
+    .hero p {
+      margin-top: 18px;
+      max-width: 60ch;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.04rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 800;
+      transition: .25s ease;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 16px 35px rgba(255,90,0,.22);
+    }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    .btn-secondary {
+      background: rgba(255,255,255,.05);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(28,28,28,.96), rgba(12,12,12,.92));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .hero-card .photo {
+      height: 420px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.52)),
+        url("https://images.unsplash.com/photo-1561758033-48b4a7f9f4b0?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+    }
+    .hero-card .content {
+      padding: 22px;
+      display: grid;
+      gap: 10px;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #f0f0f0;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .stat {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+    }
+    .stat strong {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .stat span {
+      color: var(--muted-2);
+      font-size: .85rem;
+    }
+
+    /* SECTIONS */
+    section.content-section {
+      padding: 42px 0 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .section-title span { color: var(--primary); }
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(26,26,26,.98), rgba(14,14,14,.98));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: .28s ease;
+      min-height: 100%;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,90,0,.45);
+    }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: #121212;
+    }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .35s ease;
+    }
+    .card:hover .card-media img {
+      transform: scale(1.04);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(0,0,0,.68);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+
+    .card-body {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .card-body h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .card-body p {
+      color: var(--muted);
+      line-height: 1.6;
+      min-height: 52px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: .2px;
+    }
+
+    .card .btn {
+      width: 100%;
+      padding: 14px 18px;
+    }
+
+    /* CONTACT */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 34px 0 8px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(22,22,22,.98), rgba(12,12,12,.98));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .contact-list strong {
+      color: #fff;
+    }
+
+    .mini-note {
+      color: var(--muted-2);
+      font-size: .95rem;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    footer {
+      padding: 28px 0 36px;
+      color: var(--muted-2);
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.06);
+      margin-top: 40px;
+    }
+
+    .whats-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1200;
+      background: linear-gradient(135deg, #25D366, #1faa52);
+      color: #fff;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 40px rgba(37,211,102,.28);
+      border: 0;
+      cursor: pointer;
+      font-size: 1.35rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .contact-wrap,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-card .photo { height: 340px; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .menu-btn { display: inline-flex; }
+      .nav { height: 72px; }
+      .hero { padding-top: 88px; }
+      .hero p { font-size: 1rem; }
+      .stats { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .card-body p { min-height: auto; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a href="#" class="logo">LUH LANCHES</a>
-            <div class="nav-links">
-                <a href="#burgers">Hambúrgueres</a>
-                <a href="#hotdogs">Hot Dogs</a>
-                <a href="#contato">Contato</a>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">LUH LANCHES</a>
 
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#hamburgueres">Hambúrgueres</a>
+        <a href="#hotdogs">Hot Dogs</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <button class="menu-btn" onclick="scrollToSection('contato')">Menu</button>
+    </div>
+  </header>
+
+  <main>
     <section class="hero">
-        <div class="hero-content">
-            <h1>Sabor que <br><span style="color:var(--primary)">Vicia.</span></h1>
-            <p>Os melhores lanches artesanais de Auriflama</p>
-            <a href="#burgers" class="btn">VER CARDÁPIO</a>
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span></span> Pedido rápido via WhatsApp</div>
+          <h1>Sabor que <strong>marca</strong> presença.</h1>
+          <p>
+            Hambúrgueres artesanais, hot dogs caprichados e combos montados para entregar visual forte, sabor alto e uma experiência que vende no primeiro olhar.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#hamburgueres" class="btn btn-primary">Ver hambúrgueres</a>
+            <a href="#hotdogs" class="btn btn-secondary">Ver hot dogs</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>100%</strong>
+              <span>artesanal</span>
+            </div>
+            <div class="stat">
+              <strong>Rápido</strong>
+              <span>no atendimento</span>
+            </div>
+            <div class="stat">
+              <strong>Alta</strong>
+              <span>conversão visual</span>
+            </div>
+          </div>
         </div>
+
+        <div class="hero-card">
+          <div class="photo"></div>
+          <div class="content">
+            <div class="badge-row">
+              <span class="badge">Carne suculenta</span>
+              <span class="badge">Bacon crocante</span>
+              <span class="badge">Molho especial</span>
+            </div>
+            <div>
+              <h3 style="font-family:Montserrat,sans-serif;text-transform:uppercase;margin-bottom:8px;">Destaque do cardápio</h3>
+              <p style="color:var(--muted);line-height:1.7;">
+                Visual premium com foco em apetite, contraste forte e leitura clara em celular.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="burgers" class="section">
-        <h2 class="section-title">Nossos <span>Hambúrgueres</span></h2>
+    <section id="hamburgueres" class="content-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Nossos <span>Hambúrgueres</span></h2>
+          </div>
+          <p class="section-subtitle">
+            Cards com imagem, preço, descrição curta e botão de ação forte para facilitar o pedido.
+          </p>
+        </div>
+
         <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" alt="X-Burger">
-                <div class="card-body">
-                    <h3>X-Burger Premium</h3>
-                    <p>Blend bovino 200g, queijo cheddar derretido e bacon crocante.</p>
-                    <span class="price">R$ 39,90</span>
-                    <button class="btn" style="padding: 10px 20px; width: 100%;" onclick="enviarWhats('X-Burger Premium')">PEDIR AGORA</button>
-                </div>
+          <article class="card">
+            <div class="card-media">
+              <span class="card-tag">Mais pedido</span>
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80" alt="X-Burger Premium">
             </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3ecc50f1?w=500" alt="Combo">
-                <div class="card-body">
-                    <h3>Combo da Luh</h3>
-                    <p>Hambúrguer simples + Batata frita + Coca-cola lata.</p>
-                    <span class="price">R$ 45,00</span>
-                    <button class="btn" style="padding: 10px 20px; width: 100%;" onclick="enviarWhats('Combo da Luh')">PEDIR AGORA</button>
-                </div>
+            <div class="card-body">
+              <h3>X-Burger Premium</h3>
+              <p>Blend bovino 200g, queijo cheddar derretido, bacon crocante e molho especial da casa.</p>
+              <div class="price-row">
+                <span class="price">R$ 39,90</span>
+              </div>
+              <button class="btn btn-primary" onclick="enviarWhats('X-Burger Premium')">Pedir agora</button>
             </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <span class="card-tag">Combo</span>
+              <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1200&q=80" alt="Combo da Luh">
+            </div>
+            <div class="card-body">
+              <h3>Combo da Luh</h3>
+              <p>Hambúrguer simples, batata frita crocante e refrigerante lata para uma refeição completa.</p>
+              <div class="price-row">
+                <span class="price">R$ 45,00</span>
+              </div>
+              <button class="btn btn-primary" onclick="enviarWhats('Combo da Luh')">Pedir agora</button>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <footer id="contato">
-        <div class="contact-info">
-            <p>📍 Rua das Flores, 456 - Auriflama/SP</p>
-            <p>📞 (18) 3245-7890 | 📱 (18) 99138-1163</p>
-            <p>🕒 Aberto das 18h às 23:30h</p>
+    <section id="hotdogs" class="content-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Nossos <span>Hot Dogs</span></h2>
+          </div>
+          <p class="section-subtitle">
+            Seção organizada para destacar variedade, nomes fortes e apelo visual de cardápio profissional.
+          </p>
         </div>
-        <p style="font-size: 0.8rem; color: #444;">© 2026 LUH LANCHES. Desenvolvido para encantar.</p>
-    </footer>
 
-    <script>
-        function enviarWhats(produto) {
-            const tel = "5518991381163";
-            const msg = encodeURIComponent(`Olá! Vi o site e quero pedir: ${produto}`);
-            window.open(`https://wa.me/${tel}?text=${msg}`, '_blank');
-        }
-    </script>
+        <div class="grid">
+          <article class="card">
+            <div class="card-media">
+              <span class="card-tag">Tradicional</span>
+              <img src="https://images.unsplash.com/photo-1619740455993-9d4fd32f3f3d?auto=format&fit=crop&w=1200&q=80" alt="Hot Dog Tradicional">
+            </div>
+            <div class="card-body">
+              <h3>Hot Dog Tradicional</h3>
+              <p>Salsicha, purê, vinagrete, batata palha e molho da casa com sabor equilibrado.</p>
+              <div class="price-row">
+                <span class="price">R$ 24,90</span>
+              </div>
+              <button class="btn btn-primary" onclick="enviarWhats('Hot Dog Tradicional')">Pedir agora</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <span class="card-tag">Especial</span>
+              <img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=1200&q=80" alt="Hot Dog Bacon Especial">
+            </div>
+            <div class="card-body">
+              <h3>Hot Dog Bacon Especial</h3>
+              <p>Dupla salsicha, bacon crocante, cheddar, milho, purê e batata palha generosa.</p>
+              <div class="price-row">
+                <span class="price">R$ 29,90</span>
+              </div>
+              <button class="btn btn-primary" onclick="enviarWhats('Hot Dog Bacon Especial')">Pedir agora</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="content-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Fale <span>conosco</span></h2>
+          </div>
+          <p class="section-subtitle">Deixe o contato claro e visível para facilitar o fechamento do pedido.</p>
+        </div>
+
+        <div class="contact-wrap">
+          <div class="panel">
+            <h3 style="font-family:Montserrat,sans-serif;text-transform:uppercase;margin-bottom:10px;">Informações</h3>
+            <div class="contact-list">
+              <div><strong>📍 Endereço:</strong> Rua das Flores, 456 - Auriflama/SP</div>
+              <div><strong>📞 Telefone:</strong> (18) 3245-7890</div>
+              <div><strong>📱 WhatsApp:</strong> (18) 99138-1163</div>
+              <div><strong>🕒 Horário:</strong> 18h às 23h30</div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 style="font-family:Montserrat,sans-serif;text-transform:uppercase;margin-bottom:10px;">Pedido rápido</h3>
+            <p class="mini-note">
+              Clique no botão do produto e envie automaticamente a mensagem no WhatsApp com o nome do lanche.
+              Isso melhora muito a conversão no celular.
+            </p>
+            <div class="hero-actions" style="margin-top:22px;">
+              <button class="btn btn-primary" onclick="enviarWhats('Quero fazer um pedido')">Chamar no WhatsApp</button>
+              <a class="btn btn-secondary" href="#hamburgueres">Voltar ao cardápio</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 LUH LANCHES. Sabor incomparável, visual premium e pedido fácil.</p>
+    </div>
+  </footer>
+
+  <button class="whats-float" onclick="enviarWhats('Olá! Vim pelo site e quero fazer um pedido.')">✆</button>
+
+  <script>
+    function enviarWhats(produto) {
+      const tel = "5518991381163";
+      const msg = encodeURIComponent(`Olá! Vi o site da LUH LANCHES e quero pedir: ${produto}`);
+      window.open(`https://wa.me/${tel}?text=${msg}`, "_blank");
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  </script>
 
 </body>
 </html>

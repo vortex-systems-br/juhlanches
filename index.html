@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUH LANCHES • Premium</title>
+<title>LUH LANCHES APP PRO</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#050505;
-  --card:#121212;
-  --glass:rgba(255,255,255,0.05);
+  --card:#111;
   --primary:#ff4d00;
   --primary2:#ff7a00;
   --text:#fff;
@@ -19,238 +18,187 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:Inter;
-  background:linear-gradient(180deg,#050505,#0a0a0a);
-  color:var(--text);
-}
+body{font-family:Inter;background:var(--bg);color:var(--text);}
 
-/* HEADER */
 .header{
-  padding:20px;
-  font-size:1.3rem;
-  font-weight:800;
-}
-
-/* GRID */
-.grid{
   padding:15px;
-  display:grid;
-  gap:20px;
+  font-weight:800;
+  font-size:1.2rem;
 }
 
-/* CARD */
+.grid{
+  display:grid;
+  gap:15px;
+  padding:15px;
+}
+
 .card{
   background:var(--card);
-  border-radius:20px;
+  border-radius:15px;
   overflow:hidden;
-  box-shadow:0 20px 50px rgba(0,0,0,.5);
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px) scale(1.01);
 }
 
 .card img{
   width:100%;
-  height:170px;
+  height:150px;
   object-fit:cover;
 }
 
-.card-body{
-  padding:15px;
-}
+.card-body{padding:15px;}
 
-.price{
-  color:#ffcc00;
-  font-weight:800;
-  margin:10px 0;
-}
+.price{color:#ffcc00;font-weight:800;}
 
 .btn{
   width:100%;
-  padding:12px;
+  padding:10px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
   background:linear-gradient(45deg,var(--primary),var(--primary2));
   color:#fff;
   font-weight:700;
   cursor:pointer;
 }
 
-/* MODAL PRODUTO */
-.product-modal{
+.float{
   position:fixed;
-  bottom:-100%;
-  left:0;
-  width:100%;
-  background:#111;
-  border-radius:20px 20px 0 0;
-  padding:20px;
-  transition:.4s;
+  bottom:20px;
+  right:20px;
+  background:var(--primary);
+  padding:15px;
+  border-radius:50px;
 }
 
-.product-modal.active{
-  bottom:0;
-}
-
-/* ADDONS */
-.addon{
-  display:flex;
-  justify-content:space-between;
-  margin:10px 0;
-  font-size:.9rem;
-}
-
-/* CART */
-.cart{
+.modal{
   position:fixed;
   bottom:-100%;
   left:0;
   width:100%;
   background:#111;
   padding:20px;
-  border-radius:20px 20px 0 0;
   transition:.4s;
 }
 
-.cart.active{
-  bottom:0;
-}
+.modal.active{bottom:0;}
 
 .item{
   display:flex;
   justify-content:space-between;
   margin:10px 0;
 }
-
-/* FLOAT */
-.float{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:linear-gradient(45deg,var(--primary),var(--primary2));
-  padding:15px 20px;
-  border-radius:50px;
-  font-weight:700;
-  cursor:pointer;
-}
 </style>
 </head>
 
 <body>
 
-<div class="header">🔥 LUH LANCHES</div>
+<div class="header">LUH LANCHES</div>
 
-<div class="grid">
+<div class="grid" id="produtos"></div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
-<div class="card-body">
-<h3>X-Burger Premium</h3>
-<div class="price">R$ 39,90</div>
-<button class="btn" onclick="openProduct('X-Burger Premium',39.9)">Escolher</button>
-</div>
-</div>
+<div class="float" onclick="openCart()">🛒 <span id="count">0</span></div>
 
-</div>
-
-<!-- MODAL PRODUTO -->
-<div class="product-modal" id="product">
-<h3 id="pname"></h3>
-
-<div class="addon">
-<span>Bacon</span>
-<input type="checkbox" value="5" data-name="Bacon">
-</div>
-
-<div class="addon">
-<span>Cheddar</span>
-<input type="checkbox" value="4" data-name="Cheddar">
-</div>
-
-<button class="btn" onclick="addCart()">Adicionar ao carrinho</button>
-</div>
-
-<!-- CART -->
-<div class="cart" id="cart">
-<h3>Seu Pedido</h3>
-<div id="items"></div>
+<div class="modal" id="cart">
+<h3>Carrinho</h3>
+<div id="lista"></div>
 <div id="total"></div>
-<button class="btn" onclick="finish()">Finalizar</button>
-</div>
-
-<div class="float" onclick="toggleCart()">
-🛒 <span id="count">0</span>
+<button class="btn" onclick="finalizar()">Finalizar</button>
 </div>
 
 <script>
-let carrinho=[];
-let produtoAtual=null;
 
-function openProduct(nome,preco){
-  produtoAtual={nome,preco};
-  document.getElementById("pname").innerText=nome;
-  document.getElementById("product").classList.add("active");
+// ===== PRODUTOS =====
+const produtos=[
+ {nome:"X-Burger",preco:30,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd"},
+ {nome:"X-Bacon",preco:35,img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+ {nome:"Hot Dog",preco:20,img:"https://images.unsplash.com/photo-1619740455993-9d4fd32f3f3d"}
+];
+
+// ===== CARRINHO =====
+let carrinho=JSON.parse(localStorage.getItem("cart"))||[];
+
+// ===== RENDER =====
+function render(){
+ let html="";
+ produtos.forEach((p,i)=>{
+  html+=`
+   <div class="card">
+    <img src="${p.img}">
+    <div class="card-body">
+     <h3>${p.nome}</h3>
+     <div class="price">R$ ${p.preco}</div>
+     <button class="btn" onclick="add(${i})">Adicionar</button>
+    </div>
+   </div>
+  `;
+ });
+ document.getElementById("produtos").innerHTML=html;
 }
 
-function addCart(){
-  let adicionais=[];
-  let total=produtoAtual.preco;
+render();
 
-  document.querySelectorAll("#product input:checked").forEach(i=>{
-    adicionais.push(i.dataset.name);
-    total+=parseFloat(i.value);
-  });
-
-  carrinho.push({
-    nome:produtoAtual.nome,
-    adicionais,
-    preco:total
-  });
-
-  document.getElementById("product").classList.remove("active");
-  update();
+// ===== ADD =====
+function add(i){
+ carrinho.push(produtos[i]);
+ salvar();
 }
 
+// ===== SALVAR =====
+function salvar(){
+ localStorage.setItem("cart",JSON.stringify(carrinho));
+ update();
+}
+
+// ===== UPDATE =====
 function update(){
-  document.getElementById("count").innerText=carrinho.length;
+ document.getElementById("count").innerText=carrinho.length;
 
-  let html="";
-  let total=0;
+ let html="";
+ let total=0;
 
-  carrinho.forEach((i,index)=>{
-    total+=i.preco;
-    html+=`
-      <div class="item">
-        ${i.nome} (${i.adicionais.join(", ")})
-        R$ ${i.preco.toFixed(2)}
-      </div>
-    `;
-  });
+ carrinho.forEach((i,index)=>{
+  total+=i.preco;
+  html+=`
+   <div class="item">
+    ${i.nome} R$ ${i.preco}
+    <button onclick="remove(${index})">❌</button>
+   </div>
+  `;
+ });
 
-  document.getElementById("items").innerHTML=html;
-  document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
+ document.getElementById("lista").innerHTML=html;
+ document.getElementById("total").innerText="Total: R$ "+total;
 }
 
-function toggleCart(){
-  document.getElementById("cart").classList.toggle("active");
+// ===== REMOVE =====
+function remove(i){
+ carrinho.splice(i,1);
+ salvar();
 }
 
-function finish(){
-  let msg="Pedido:%0A";
-  let total=0;
-
-  carrinho.forEach(i=>{
-    msg+=`- ${i.nome} (${i.adicionais.join(", ")}) R$ ${i.preco}%0A`;
-    total+=i.preco;
-  });
-
-  msg+=`Total: R$ ${total}`;
-
-  window.open(`https://wa.me/5518991381163?text=${msg}`);
+// ===== CART =====
+function openCart(){
+ document.getElementById("cart").classList.toggle("active");
 }
+
+// ===== FINALIZAR =====
+function finalizar(){
+ let msg="Pedido:%0A";
+ let total=0;
+
+ carrinho.forEach(i=>{
+  msg+=`${i.nome} R$ ${i.preco}%0A`;
+  total+=i.preco;
+ });
+
+ msg+=`Total: R$ ${total}`;
+
+ window.open(`https://wa.me/5518991381163?text=${msg}`);
+
+ carrinho=[];
+ salvar();
+}
+
+update();
+
 </script>
 
 </body>
